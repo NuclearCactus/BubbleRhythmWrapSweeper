@@ -8,16 +8,16 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
 {
     public HexgridPosition HexPosition;
     public bool HasBeenClicked = false;
-    protected SpriteRenderer _spriteRenderer;
+    protected SpriteRenderer SpriteRenderer;
     [SerializeField] private Color _highLightColor;
-    [SerializeField] private UnityEvent _clickEvent;
+    [SerializeField] protected UnityEvent ClickEvent;
 
     private void Start()
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (HasBeenClicked)
             return;
@@ -29,8 +29,9 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
 
     public virtual void ClickLogic()
     {
-        Debug.Log($"{name} on position {HexPosition.GetCube()} got clicked!");
-        _clickEvent?.Invoke();
+        //Debug.Log($"{name} on position {HexPosition.GetCube()} got clicked!");
+        ClickEvent?.Invoke();
+        GameManager.Instance.PlayBubblePopSound();
     }
 
 
@@ -41,13 +42,13 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
 
     IEnumerator HighlightCoroutine(float duration)
     {
-        Color c = _spriteRenderer.color;
+        Color c = SpriteRenderer.color;
         for (float timer = 0f; timer < duration; timer += 0.1f)
         {
-            _spriteRenderer.color = Color.Lerp(_highLightColor,c, timer/duration);
+            SpriteRenderer.color = Color.Lerp(_highLightColor,c, timer/duration);
             yield return null;
         }
-        _spriteRenderer.color = _highLightColor;
+        SpriteRenderer.color = _highLightColor;
 
     }
 

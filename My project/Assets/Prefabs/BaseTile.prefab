@@ -223,6 +223,4 @@ MonoBehaviour:
   - {fileID: 1672083449, guid: a9ed9b59fa6ca4942a73bda349fd2a37, type: 3}
   _spritesPopped:
   - {fileID: -2038745436, guid: a9ed9b59fa6ca4942a73bda349fd2a37, type: 3}
-  - {fileID: 1904883775, guid: a9ed9b59fa6ca4942a73bda349fd2a37, type: 3}
-  - {fileID: -1599488163, guid: a9ed9b59fa6ca4942a73bda349fd2a37, type: 3}
   _renderer: {fileID: 8220055608723137324}

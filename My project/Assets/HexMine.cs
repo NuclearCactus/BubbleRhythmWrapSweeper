@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class HexMine : Hextile
 {
   
     public override void ClickLogic()
     {
-        base.ClickLogic();
+        ClickEvent?.Invoke();
         Debug.Log($"BOOOOOOOOOOOOOOMMMMMMMM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         GameManager.Instance.PlayExplosionSound();
-        _spriteRenderer.color= Color.red;
+        GameManager.Instance.TriggerShake(1, 5f);
+        GameManager.Instance.RemoveLife();
+        SpriteRenderer.color= Color.red;
+
     }
 }

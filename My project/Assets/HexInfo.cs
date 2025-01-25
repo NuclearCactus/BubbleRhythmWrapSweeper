@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HexInfo : Hextile
 {
-    [SerializeField] private Color[] colorList;
+    [SerializeField] private Color[] _colorList;
    
     public override void ClickLogic()
     {
@@ -17,6 +17,6 @@ public class HexInfo : Hextile
             GameManager.Instance.CustomGridScript.ClickAroundTile(HexPosition);
         }
 
-        _spriteRenderer.color = colorList[idx];
+        SpriteRenderer.color = _colorList[idx];
     }
 }

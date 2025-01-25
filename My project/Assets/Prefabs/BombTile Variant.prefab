@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasBeenClicked: 0
   _highLightColor: {r: 0, g: 0.6117647, b: 1, a: 1}
-  _clickEvent:
+  ClickEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2242353069921099736}

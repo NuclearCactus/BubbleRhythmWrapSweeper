@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CustomGridScript : MonoBehaviour
 {
@@ -26,6 +24,20 @@ public class CustomGridScript : MonoBehaviour
     }
     private void OnEnable()
     {
+        RevealTiles();
+    }
+
+    public void Reset()
+    {
+        
+        foreach (var tile in _tiles)
+        {
+            Destroy(tile.Value);
+        }
+        _tiles.Clear();
+
+        DistributeTilesOnPositions(GenerateTilePostions());
+
         RevealTiles();
     }
     private void DistributeTilesOnPositions(List<HexgridPosition> hexgridPositions)
@@ -140,18 +152,34 @@ public class CustomGridScript : MonoBehaviour
 
     internal void ClickAroundTile(HexgridPosition hexgridPosition)
     {
-        ClickTile(hexgridPosition + new HexgridPosition(1, 0));
-        ClickTile(hexgridPosition + new HexgridPosition(-1, 0));
 
-        ClickTile(hexgridPosition + new HexgridPosition(1, -1));
-        ClickTile(hexgridPosition + new HexgridPosition(-1, 1));
-
-
-        ClickTile(hexgridPosition + new HexgridPosition(0, 1));
-        ClickTile(hexgridPosition + new HexgridPosition(0, -1));
+        StartCoroutine(ClickAroundTileCoroutine(hexgridPosition));
 
 
     }
+
+    IEnumerator ClickAroundTileCoroutine(HexgridPosition hexgridPosition)
+    {
+        ClickTile(hexgridPosition + new HexgridPosition(1, 0));
+        yield return new WaitForSeconds(0.05f);
+        ClickTile(hexgridPosition + new HexgridPosition(-1, 0));
+        yield return new WaitForSeconds(0.05f);
+
+
+        ClickTile(hexgridPosition + new HexgridPosition(1, -1));
+        yield return new WaitForSeconds(0.05f);
+
+        ClickTile(hexgridPosition + new HexgridPosition(-1, 1));
+        yield return new WaitForSeconds(0.05f);
+
+        ClickTile(hexgridPosition + new HexgridPosition(0, 1));
+        yield return new WaitForSeconds(0.05f);
+
+        ClickTile(hexgridPosition + new HexgridPosition(0, -1));
+        yield return new WaitForSeconds(0.05f);
+
+    }
+
 
     private void ClickTile(HexgridPosition hexgridPosition)
     {
@@ -191,7 +219,7 @@ public class CustomGridScript : MonoBehaviour
 
     public void RevealTiles()
     {
-        RevealTiles(2f);
+        RevealTiles(1f);
     }
     IEnumerator RevealTilesCoroutine(float duration)
     {
@@ -202,15 +230,12 @@ public class CustomGridScript : MonoBehaviour
             if(animator != null)
             {
                 animator.Play("TilePopUp");
+                if(UnityEngine.Random.Range(0,11)>6)
+                GameManager.Instance.BubbleBlowSound();
                 yield return new WaitForSeconds(duration/durationTest);
                 
-
             }
-
         }
-
-
-
     }
 }
 
