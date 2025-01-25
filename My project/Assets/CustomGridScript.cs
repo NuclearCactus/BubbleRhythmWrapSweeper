@@ -161,22 +161,22 @@ public class CustomGridScript : MonoBehaviour
     IEnumerator ClickAroundTileCoroutine(HexgridPosition hexgridPosition)
     {
         ClickTile(hexgridPosition + new HexgridPosition(1, 0));
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(15f/102f);
         ClickTile(hexgridPosition + new HexgridPosition(-1, 0));
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(15f / 102f);
 
 
         ClickTile(hexgridPosition + new HexgridPosition(1, -1));
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(15f / 102f);
 
         ClickTile(hexgridPosition + new HexgridPosition(-1, 1));
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(15f / 102f);
 
         ClickTile(hexgridPosition + new HexgridPosition(0, 1));
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(15f / 102f);
 
         ClickTile(hexgridPosition + new HexgridPosition(0, -1));
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(15f / 102f);
 
     }
 

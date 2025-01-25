@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _mouseClick;
     [SerializeField] private AudioSource _bubbleBlow;
 
-
+    
 
 
 
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AnimationCurve _cameraRotationShake;
 
     [SerializeField, Header("Juice")] private Animator _restartButton;
+    public MetroGnome metronome;
 
 
     // update pls

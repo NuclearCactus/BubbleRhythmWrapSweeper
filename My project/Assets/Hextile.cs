@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +12,14 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
     protected SpriteRenderer SpriteRenderer;
     [SerializeField] private Color _highLightColor;
     [SerializeField] protected UnityEvent ClickEvent;
+    [SerializeField] protected Animator Animator;
+
 
     private void Start()
     {
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        Animator = GetComponent<Animator>();
+        GameManager.Instance.metronome.Beat += Beat;
     }
 
     public virtual void OnPointerClick(PointerEventData eventData)
@@ -52,5 +57,11 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
 
     }
 
-
+    protected void Beat(object sender, EventArgs e)
+    {
+        if (Animator.GetCurrentAnimatorStateInfo(0).IsName("TileGeneral"))
+        {
+            Animator.Play("TileBeat");
+        }
+    }
 }

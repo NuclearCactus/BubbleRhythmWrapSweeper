@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 181540252}
   - component: {fileID: 181540253}
   - component: {fileID: 181540254}
+  - component: {fileID: 181540255}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -290,14 +291,14 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181540251}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3332091046959807853, guid: 394ec4456011d384887cd7027b69a885, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 76bda83eec067e7448287538b72de71e, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: b3fa4f267913fb0418f43d1d164b0062, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.881
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -475,6 +476,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &181540255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181540251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f7f9d8d783219459a58a1dccb33c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BPM: 51
+  offset: 0.35
+  _metronomeTick: {fileID: 181540253}
 --- !u!1 &324777302
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +718,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: d92868558862bfa4b87a66762208b042, type: 2}
 --- !u!4 &746599441
 Transform:
@@ -1100,7 +1116,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0439038, y: 1.0439038, z: 1.0439038}
+  m_LocalScale: {x: 1.019299, y: 1.019299, z: 1.019299}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1412772649}
@@ -1409,6 +1425,8 @@ MonoBehaviour:
   _bubbleExplosion: {fileID: 1520349969}
   _mouseClick: {fileID: 1520349968}
   _bubbleBlow: {fileID: 1520349970}
+  _maxLives: 4
+  _postprocessing: {fileID: 746599440}
   _shakeMagnitude: 0.7
   _dampingSpeed: 1
   _camera: {fileID: 1783405005}
@@ -1524,6 +1542,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _restartButton: {fileID: 1341898037}
+  metronome: {fileID: 181540255}
 --- !u!4 &1520349966
 Transform:
   m_ObjectHideFlags: 0
@@ -2154,9 +2173,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 935705687731631677, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
+      propertyPath: _gridRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 935705687731631677, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
+      propertyPath: _specialTiles.Array.data[0].SpecialTileAmount
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1165945566323009967, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.87
       objectReference: {fileID: 0}
     - target: {fileID: 1165945566323009967, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2196,19 +2223,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1522691461012390732, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8153419
+      value: 0.64540505
       objectReference: {fileID: 0}
     - target: {fileID: 1522691461012390732, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8153419
+      value: 0.64540505
       objectReference: {fileID: 0}
     - target: {fileID: 1522691461012390732, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8153419
+      value: 0.64540505
       objectReference: {fileID: 0}
     - target: {fileID: 1522691461012390732, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.47
+      value: -0.56
       objectReference: {fileID: 0}
     - target: {fileID: 2033801922662624491, guid: 0ec55f617c4bad347886b44480358d2f, type: 3}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[1].m_Target

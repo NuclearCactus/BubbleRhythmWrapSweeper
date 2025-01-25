@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Speed: 1
+    - _Speed: 0.85
     m_Colors:
     - _Distortion: {r: 0.003, g: 0.003, b: 0, a: 0}
     - _ScannerDisplacement: {r: 0.005, g: 0, b: 0, a: 0}

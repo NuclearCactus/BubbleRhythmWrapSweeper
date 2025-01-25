@@ -5,7 +5,14 @@ using UnityEngine.UIElements;
 
 public class HexMine : Hextile
 {
-  
+
+    SpriteRenderer _flag;
+    private void Start()
+    {
+        Animator = GetComponent<Animator>();
+        GameManager.Instance.metronome.Beat += Beat;
+        _flag.enabled = false;
+    }
     public override void ClickLogic()
     {
         ClickEvent?.Invoke();
@@ -16,4 +23,5 @@ public class HexMine : Hextile
         SpriteRenderer.color= Color.red;
 
     }
+
 }
