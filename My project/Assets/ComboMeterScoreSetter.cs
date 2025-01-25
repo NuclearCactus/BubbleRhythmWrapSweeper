@@ -141,7 +141,56 @@ public class ComboMeterScoreSetter : MonoBehaviour
         AnimationLowerScore();
         LowerScoreAnticipation();
     }
+
+    public void ScoreFine(int fine)
+    {
+        Miniscore -= fine;
+        SortMiniScore();
+    }
+
+    internal void Finished()
+    {
+        Miniscore += 30;
+        SortMiniScore();
+
+
+        Vector3 position = _spawnradius.gameObject.transform.position + UnityEngine.Random.Range(-0.5f, 0.5f) * _spawnradius.transform.localScale.x * new Vector3(1, 0)
+            + UnityEngine.Random.Range(-0.5f, 0.5f) * _spawnradius.transform.localScale.y * new Vector3(0, 1);
+
+        GameObject text = GameObject.Instantiate(_textPopUp.gameObject, position, Quaternion.identity);
+        //text.transform.SetParent(_spawnradius.transform,true);
+        //text.transform.localScale = new Vector3(1f/text.transform.parent.localScale.x,
+        //    1f / text.transform.parent.localScale.y, 1f / text.transform.parent.localScale.z);
+        //
+        TextPopupMood textPopupMood = TextPopupMood.VeryPositive;
+
+        
+
+        text.GetComponent<TextPopUp>().SetPopup($"Finished, +{30}", textPopupMood);
+    }
+
+    internal void ManuelResetFine()
+    {
+        Miniscore -= 15;
+        SortMiniScore();
+
+
+        Vector3 position = _spawnradius.gameObject.transform.position + UnityEngine.Random.Range(-0.5f, 0.5f) * _spawnradius.transform.localScale.x * new Vector3(1, 0)
+            + UnityEngine.Random.Range(-0.5f, 0.5f) * _spawnradius.transform.localScale.y * new Vector3(0, 1);
+
+        GameObject text = GameObject.Instantiate(_textPopUp.gameObject, position, Quaternion.identity);
+        //text.transform.SetParent(_spawnradius.transform,true);
+        //text.transform.localScale = new Vector3(1f/text.transform.parent.localScale.x,
+        //    1f / text.transform.parent.localScale.y, 1f / text.transform.parent.localScale.z);
+        //
+        TextPopupMood textPopupMood = TextPopupMood.Negative;
+
+
+
+        text.GetComponent<TextPopUp>().SetPopup($"Reset fine! -{15}", textPopupMood);
+    }
 }
+
 
 [Serializable]
 public class ErrorMargins

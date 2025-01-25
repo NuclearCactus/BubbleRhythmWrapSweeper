@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public ComboMeterScoreSetter ScoreSetter;
 
 
+    private int _unflagAmount;
+
     // update pls
     void Start()
     {
@@ -163,8 +165,25 @@ public class GameManager : MonoBehaviour
     internal void tileClick()
     {
         ScoreSetter.AddActionscore();
+        
     }
 
+    internal void CheckIfEnd()
+    {
+        if (!CustomGridScript.AnythingLeft())
+        {
+            StartCoroutine(WaitASecondThenReset());
+            ScoreSetter.Finished();
+
+        }
+    }
+
+    IEnumerator WaitASecondThenReset()
+    {
+        yield return new WaitForSeconds(0.1f);
+        CustomGridScript.Reset();
+
+    }
     internal void tileFlag()
     {
         ScoreSetter.AddActionscore();
@@ -175,6 +194,16 @@ public class GameManager : MonoBehaviour
     {
         _unflagMistakes++;
         ScoreSetter.AddActionscore();
+        _unflagAmount++;
+        ScoreSetter.ScoreFine(_unflagAmount);
+        CustomGridScript.Unflag();
 
     }
+
+    public void ManualReset()
+    {
+        ScoreSetter.ManuelResetFine();
+        CustomGridScript.Reset();
+    }
+  
 }

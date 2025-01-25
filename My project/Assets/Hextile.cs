@@ -9,6 +9,7 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
 {
     public HexgridPosition HexPosition;
     public bool HasBeenClicked = false;
+    public bool HasBeenPopped = false;
     protected SpriteRenderer SpriteRenderer;
     [SerializeField] private Color _highLightColor;
     [SerializeField] protected UnityEvent ClickEvent;
@@ -37,7 +38,7 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
                 return;
 
 
-            HasBeenClicked = true;
+            
             ClickLogic();
                     GameManager.Instance.tileClick();
 
@@ -47,12 +48,12 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
 
             if (!_flag.enabled && !HasBeenClicked)
             {
-                _flag.enabled= true;
-                HasBeenClicked = true;
+                
+                    _flag.enabled = true;
+                    HasBeenClicked = true;
 
-                Debug.Log("works pls ");
-                GameManager.Instance.tileFlag();
-
+                    GameManager.Instance.tileFlag();
+                
 
             }
             else if (_flag.enabled && HasBeenClicked)
@@ -73,6 +74,10 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
     public virtual void ClickLogic()
     {
         //Debug.Log($"{name} on position {HexPosition.GetCube()} got clicked!");
+        HasBeenClicked = true;
+        HasBeenPopped = true;
+        GameManager.Instance.CheckIfEnd();
+
         ClickEvent?.Invoke();
         GameManager.Instance.PlayBubblePopSound();
     }

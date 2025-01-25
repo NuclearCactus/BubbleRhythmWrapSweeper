@@ -10,6 +10,11 @@ public class CustomGridScript : MonoBehaviour
     [SerializeField] private Hextile _normalTile;
     [SerializeField] private List<SpecialTileContainer> _specialTiles;
 
+    private int flagMax = 0;
+
+    private int flags = 0;
+    private int minesExploded = 0;
+
 
     private Dictionary<HexgridPosition, GameObject> _tiles = new Dictionary<HexgridPosition, GameObject>();
 
@@ -35,7 +40,9 @@ public class CustomGridScript : MonoBehaviour
             Destroy(tile.Value);
         }
         _tiles.Clear();
-
+        flags = 0;
+        flagMax = 0;
+        minesExploded = 0;
         DistributeTilesOnPositions(GenerateTilePostions());
 
         RevealTiles();
@@ -52,6 +59,7 @@ public class CustomGridScript : MonoBehaviour
                 {
                     PlaceTilePrefab(cntr.SpecialTile, hexgridPositions[currentTileIndex]);
                     currentTileIndex++;
+                    flagMax++;
                 }
                 else
                 {
@@ -214,6 +222,7 @@ public class CustomGridScript : MonoBehaviour
             }
 
         }
+        StopAllCoroutines();
         StartCoroutine(RevealTilesCoroutine(duration));
     }
 
@@ -236,6 +245,34 @@ public class CustomGridScript : MonoBehaviour
                 
             }
         }
+    }
+
+    
+
+    internal void MineExploded()
+    {
+        minesExploded++;
+    }
+
+    internal bool AnythingLeft()
+    {
+        int i = 0;
+        foreach (var tile in _tiles)
+        {
+            if (!tile.Value.GetComponent<Hextile>().HasBeenPopped)
+            {
+                i++;
+            }
+        }
+        Debug.Log(minesExploded + i + " tiles left");
+        if (minesExploded + i == flagMax)
+            return false;
+        return true;
+    }
+
+    internal void Unflag()
+    {
+        flags--;
     }
 }
 

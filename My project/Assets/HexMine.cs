@@ -15,6 +15,10 @@ public class HexMine : Hextile
     }
     public override void ClickLogic()
     {
+        GameManager.Instance.CheckIfEnd();
+
+        HasBeenClicked = true;
+        HasBeenPopped = true;
         ClickEvent?.Invoke();
         Debug.Log($"BOOOOOOOOOOOOOOMMMMMMMM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         GameManager.Instance.PlayExplosionSound();

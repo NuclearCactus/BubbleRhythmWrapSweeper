@@ -8,6 +8,9 @@ public class HexInfo : Hextile
    
     public override void ClickLogic()
     {
+        GameManager.Instance.CheckIfEnd();
+        HasBeenClicked = true;
+        HasBeenPopped = true;
         base.ClickLogic();
 
         int idx = GameManager.Instance.CustomGridScript.GetMineAmountAroundTile(HexPosition);
