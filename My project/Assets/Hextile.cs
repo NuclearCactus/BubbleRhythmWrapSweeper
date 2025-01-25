@@ -25,4 +25,10 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
         Debug.Log($"{name} on position {HexPosition.GetCube()} got clicked!");
     }
 
+    public void ClickLogicWorkaround()
+    {
+        ClickLogic();
+        // dude trust.
+    }
+
 }

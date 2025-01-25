@@ -84,24 +84,26 @@ public class CustomGridScript : MonoBehaviour
         {
             i++;
         }
-        if (CheckIfMine(hexgridPosition + new HexgridPosition(1, 1)))
-        {
-            i++;
-        }
-        if (CheckIfMine(hexgridPosition + new HexgridPosition(0, 1)))
-        {
-            i++;
-        }
         if (CheckIfMine(hexgridPosition + new HexgridPosition(-1, 0)))
         {
             i++;
         }
 
-        if (CheckIfMine(hexgridPosition + new HexgridPosition(-1, -1)))
+
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(1, -1)))
         {
             i++;
         }
-        if (CheckIfMine(hexgridPosition + new HexgridPosition(-1, -1)))
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(-1, 1)))
+        {
+            i++;
+        }
+
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(0, 1)))
+        {
+            i++;
+        }
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(0, -1)))
         {
             i++;
         }
@@ -113,14 +115,19 @@ public class CustomGridScript : MonoBehaviour
 
     private bool CheckIfMine(HexgridPosition hexgridPosition)
     {
-        GameObject obj = _tiles.GetValueOrDefault(hexgridPosition);
-        if (obj == null)
-            return false;
-        if (obj.GetComponent<HexMine>() != null)
+        if (_tiles.ContainsKey(hexgridPosition))
         {
-            return true;
+            GameObject obj = _tiles.GetValueOrDefault(hexgridPosition);
+
+            if (obj == null)
+                return false;
+            if (obj.GetComponent<HexMine>() != null)
+            {
+                return true;
+            }
         }
         return false;
+
     }
 
     internal void ClickAroundTile(HexgridPosition hexgridPosition)
@@ -128,8 +135,8 @@ public class CustomGridScript : MonoBehaviour
         ClickTile(hexgridPosition + new HexgridPosition(1, 0));
         ClickTile(hexgridPosition + new HexgridPosition(-1, 0));
 
-        ClickTile(hexgridPosition + new HexgridPosition(1, 1));
-        ClickTile(hexgridPosition + new HexgridPosition(-1, -1));
+        ClickTile(hexgridPosition + new HexgridPosition(1, -1));
+        ClickTile(hexgridPosition + new HexgridPosition(-1, 1));
 
 
         ClickTile(hexgridPosition + new HexgridPosition(0, 1));
@@ -140,12 +147,23 @@ public class CustomGridScript : MonoBehaviour
 
     private void ClickTile(HexgridPosition hexgridPosition)
     {
-        GameObject obj = _tiles.GetValueOrDefault(hexgridPosition);
-        if (obj == null)
-            return;
-        if (obj.GetComponent<Hextile>() != null)
+        if (_tiles.ContainsKey(hexgridPosition))
         {
-            obj.GetComponent<Hextile>().ClickLogic();
+            GameObject obj = _tiles.GetValueOrDefault(hexgridPosition);
+            if (obj == null)
+                return;
+            if (obj.GetComponent<Hextile>() != null)
+            {
+                //obj.GetComponent<Hextile>().ClickLogic();
+
+                Hextile hextile = obj.GetComponent<Hextile>();
+                if (!hextile.HasBeenClicked)
+                {
+                    hextile.HasBeenClicked = true;
+                    hextile.ClickLogic();
+                }
+
+            }
         }
     }
 }
