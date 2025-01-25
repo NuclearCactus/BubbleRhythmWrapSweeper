@@ -221,11 +221,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellSize: {x: 1, y: 1}
-  _gridRadius: 3
+  _gridRadius: 4
   _normalTile: {fileID: 3300612545321014033, guid: 53bde71251d839344bd3aad94d3dc40a, type: 3}
   _specialTiles:
   - SpecialTile: {fileID: 744452652313302075, guid: 8eb06b279bb0ac0468b2cacaa05573b0, type: 3}
-    SpecialTileAmount: 5
+    SpecialTileAmount: 10
 --- !u!4 &1222214318
 Transform:
   m_ObjectHideFlags: 0
