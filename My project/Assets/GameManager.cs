@@ -18,13 +18,13 @@ public class GameManager : MonoBehaviour
     
 
 
-
     private float _shakeDuration = 0f;
     private float _maxShakeDuration = 0f;
 
     [SerializeField, Header("Life Settings")] private int _maxLives = 3;
     private int _lives = 3;
     [SerializeField] private Volume _postprocessing;
+    private int _unflagMistakes;
 
 
 
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField, Header("Juice")] private Animator _restartButton;
     public MetroGnome metronome;
+    public ComboMeterScoreSetter ScoreSetter;
 
 
     // update pls
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         }
         _lives = _maxLives;
         _initialCameraPosition = _camera.transform.localPosition;
+        Time.timeScale = 1;
 
     }
 
@@ -134,7 +136,10 @@ public class GameManager : MonoBehaviour
         Debug.Log(1f - ((float)_lives / (float)_maxLives) + " " + _lives +" lives left");
         Time.timeScale = 0.6f;
 
-        if( _lives <= 0)
+        ScoreSetter.RemoveLifeScore();
+
+
+        if ( _lives <= 0)
         {
             Time.timeScale = 0.15f;
             StartCoroutine(StartDeath());
@@ -153,5 +158,23 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(0);
+    }
+
+    internal void tileClick()
+    {
+        ScoreSetter.AddActionscore();
+    }
+
+    internal void tileFlag()
+    {
+        ScoreSetter.AddActionscore();
+
+    }
+
+    internal void tileUnflag()
+    {
+        _unflagMistakes++;
+        ScoreSetter.AddActionscore();
+
     }
 }

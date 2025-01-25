@@ -219,7 +219,7 @@ public class CustomGridScript : MonoBehaviour
 
     public void RevealTiles()
     {
-        RevealTiles(1f);
+        RevealTiles(0.5f);
     }
     IEnumerator RevealTilesCoroutine(float duration)
     {

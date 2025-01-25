@@ -28,7 +28,7 @@ public class MetroGnome : MonoBehaviour
     {
         if (AudioSettings.dspTime >= nextTime)
         {
-            Debug.Log("Tick");
+            //Debug.Log("Tick");
             nextTime += bpmInSeconds;
             Metronometick();
         }
@@ -42,5 +42,11 @@ public class MetroGnome : MonoBehaviour
         _metronomeTick.volume = UnityEngine.Random.Range(0.8f, 1.2f);
 
         _metronomeTick.Play();
+    }
+
+    public float ProgressInTick()
+    {
+        return ((float)AudioSettings.dspTime - nextTime + bpmInSeconds) / bpmInSeconds;
+
     }
 }

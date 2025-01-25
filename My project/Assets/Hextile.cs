@@ -13,6 +13,7 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color _highLightColor;
     [SerializeField] protected UnityEvent ClickEvent;
     [SerializeField] protected Animator Animator;
+    [SerializeField] SpriteRenderer _flag;
 
 
     private void Start()
@@ -20,16 +21,53 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         Animator = GetComponent<Animator>();
         GameManager.Instance.metronome.Beat += Beat;
-    }
+        _flag.enabled = false;
 
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.metronome.Beat -= Beat;
+
+    }
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if (HasBeenClicked)
-            return;
+        if (eventData.button == 0)
+        {
+            if (HasBeenClicked)
+                return;
 
 
-        HasBeenClicked = true;
-        ClickLogic();
+            HasBeenClicked = true;
+            ClickLogic();
+                    GameManager.Instance.tileClick();
+
+        }
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+
+            if (!_flag.enabled && !HasBeenClicked)
+            {
+                _flag.enabled= true;
+                HasBeenClicked = true;
+
+                Debug.Log("works pls ");
+                GameManager.Instance.tileFlag();
+
+
+            }
+            else if (_flag.enabled && HasBeenClicked)
+            {
+                {
+                    _flag.enabled = false;
+
+
+                    HasBeenClicked = false;
+
+                    GameManager.Instance.tileUnflag();
+
+                }
+            }
+        }
     }
 
     public virtual void ClickLogic()

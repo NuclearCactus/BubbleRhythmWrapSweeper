@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class HexMine : Hextile
 {
 
-    SpriteRenderer _flag;
     private void Start()
     {
         Animator = GetComponent<Animator>();
         GameManager.Instance.metronome.Beat += Beat;
-        _flag.enabled = false;
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     public override void ClickLogic()
     {
@@ -20,8 +20,9 @@ public class HexMine : Hextile
         GameManager.Instance.PlayExplosionSound();
         GameManager.Instance.TriggerShake(1, 5f);
         GameManager.Instance.RemoveLife();
-        SpriteRenderer.color= Color.red;
+        SpriteRenderer.color = Color.red;
 
     }
-
+    
 }
+

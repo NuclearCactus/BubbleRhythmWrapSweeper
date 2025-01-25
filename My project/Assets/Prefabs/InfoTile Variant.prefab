@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InfoTile Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4301944445273326936, guid: a293baa3a0483664eae2adf238d34e32, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6701911928245531246, guid: a293baa3a0483664eae2adf238d34e32, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54,6 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7567391291384663365, guid: a293baa3a0483664eae2adf238d34e32, type: 3}
+    - {fileID: 3788551214986356063, guid: a293baa3a0483664eae2adf238d34e32, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -72,6 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299624f6b4cc0894fa513cadb65b085e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &5539754623587982762 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4301944445273326936, guid: a293baa3a0483664eae2adf238d34e32, type: 3}
+  m_PrefabInstance: {fileID: 8598140060819347698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8369903852589496273 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 249217374785662755, guid: a293baa3a0483664eae2adf238d34e32, type: 3}
@@ -106,6 +116,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  Animator: {fileID: 0}
+  _flag: {fileID: 5539754623587982762}
   _colorList:
   - {r: 0.49685526, g: 0.49685526, b: 0.49685526, a: 1}
   - {r: 0.3595487, g: 0.6792453, b: 0.31399068, a: 1}
