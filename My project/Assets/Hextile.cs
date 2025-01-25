@@ -20,7 +20,7 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
         ClickLogic();
     }
 
-    private void ClickLogic()
+    public virtual void ClickLogic()
     {
         Debug.Log($"{name} on position {HexPosition.GetCube()} got clicked!");
     }

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6701911928245531246}
   - component: {fileID: 6914462499292900008}
-  - component: {fileID: 7567391291384663365}
   - component: {fileID: 5801814614468581045}
+  - component: {fileID: 3300612545321014033}
   m_Layer: 0
-  m_Name: RedTile
+  m_Name: Infotile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7567391291384663365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249217374785662755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72a5e8481b226f04dacc1448c891dd83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HasBeenClicked: 0
 --- !u!58 &5801814614468581045
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +121,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45
+--- !u!114 &3300612545321014033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249217374785662755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f48a072b9aa51b4b9db862743f3c2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasBeenClicked: 0
+  colorList:
+  - {r: 0.5345911, g: 0.5345911, b: 0.5345911, a: 1}
+  - {r: 0.38291124, g: 0.69182384, b: 0.25453886, a: 1}
+  - {r: 0.8509804, g: 0.80499256, b: 0.14509803, a: 1}
+  - {r: 0.9811321, g: 0.3913833, b: 0.021597084, a: 1}
+  - {r: 1, g: 0.062048174, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.59971523, a: 1}
+  - {r: 0.8039527, g: 0, b: 1, a: 1}

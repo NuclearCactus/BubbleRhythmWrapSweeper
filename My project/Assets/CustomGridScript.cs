@@ -76,6 +76,78 @@ public class CustomGridScript : MonoBehaviour
         }
         return positionList; 
     }
+
+    internal int GetMineAmountAroundTile(HexgridPosition hexgridPosition)
+    {
+        int i = 0;
+        if(CheckIfMine(hexgridPosition+new HexgridPosition(1, 0)))
+        {
+            i++;
+        }
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(1, 1)))
+        {
+            i++;
+        }
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(0, 1)))
+        {
+            i++;
+        }
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(-1, 0)))
+        {
+            i++;
+        }
+
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(-1, -1)))
+        {
+            i++;
+        }
+        if (CheckIfMine(hexgridPosition + new HexgridPosition(-1, -1)))
+        {
+            i++;
+        }
+        return i;
+
+
+
+    }
+
+    private bool CheckIfMine(HexgridPosition hexgridPosition)
+    {
+        GameObject obj = _tiles.GetValueOrDefault(hexgridPosition);
+        if (obj == null)
+            return false;
+        if (obj.GetComponent<HexMine>() != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    internal void ClickAroundTile(HexgridPosition hexgridPosition)
+    {
+        ClickTile(hexgridPosition + new HexgridPosition(1, 0));
+        ClickTile(hexgridPosition + new HexgridPosition(-1, 0));
+
+        ClickTile(hexgridPosition + new HexgridPosition(1, 1));
+        ClickTile(hexgridPosition + new HexgridPosition(-1, -1));
+
+
+        ClickTile(hexgridPosition + new HexgridPosition(0, 1));
+        ClickTile(hexgridPosition + new HexgridPosition(0, -1));
+
+
+    }
+
+    private void ClickTile(HexgridPosition hexgridPosition)
+    {
+        GameObject obj = _tiles.GetValueOrDefault(hexgridPosition);
+        if (obj == null)
+            return;
+        if (obj.GetComponent<Hextile>() != null)
+        {
+            obj.GetComponent<Hextile>().ClickLogic();
+        }
+    }
 }
 
 
@@ -103,6 +175,12 @@ public struct HexgridPosition
     {
         return a.Equals(b);
     }
+
+    public static HexgridPosition operator +(HexgridPosition a, HexgridPosition b)
+    {
+        return new HexgridPosition(a.Q+b.Q,a.R+b.R);
+    }
+
     public static bool operator !=(HexgridPosition a, HexgridPosition b)
     {
         return !(a == b);

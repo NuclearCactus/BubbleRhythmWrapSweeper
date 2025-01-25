@@ -222,10 +222,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cellSize: {x: 1, y: 1}
   _gridRadius: 3
-  _normalTile: {fileID: 7567391291384663365, guid: 65f2f819d0a33124f9575a321142035d, type: 3}
+  _normalTile: {fileID: 3300612545321014033, guid: 53bde71251d839344bd3aad94d3dc40a, type: 3}
   _specialTiles:
-  - SpecialTile: {fileID: 7567391291384663365, guid: 8eb06b279bb0ac0468b2cacaa05573b0, type: 3}
-    SpecialTileAmount: 2
+  - SpecialTile: {fileID: 744452652313302075, guid: 8eb06b279bb0ac0468b2cacaa05573b0, type: 3}
+    SpecialTileAmount: 5
 --- !u!4 &1222214318
 Transform:
   m_ObjectHideFlags: 0
@@ -236,6 +236,51 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6106631, y: -0.7420467, z: 0.044722676}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1520349964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1520349966}
+  - component: {fileID: 1520349965}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1520349965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520349964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540c43d8afc43b64ca55845ed7070167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CustomGridScript: {fileID: 1222214317}
+--- !u!4 &1520349966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520349964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.65809447, y: -0.542306, z: -0.085567385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -402,3 +447,4 @@ SceneRoots:
   - {fileID: 1783405009}
   - {fileID: 1222214318}
   - {fileID: 324777305}
+  - {fileID: 1520349966}
