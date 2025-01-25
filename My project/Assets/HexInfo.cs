@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class HexInfo : Hextile
 {
-    SpriteRenderer spriteRenderer;
     [SerializeField] private Color[] colorList;
-    private void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+   
     public override void ClickLogic()
     {
         base.ClickLogic();
@@ -21,6 +17,6 @@ public class HexInfo : Hextile
             GameManager.Instance.CustomGridScript.ClickAroundTile(HexPosition);
         }
 
-        spriteRenderer.color = colorList[idx];
+        _spriteRenderer.color = colorList[idx];
     }
 }

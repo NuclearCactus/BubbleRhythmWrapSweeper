@@ -20,8 +20,14 @@ public class CustomGridScript : MonoBehaviour
     {
         DistributeTilesOnPositions(GenerateTilePostions());
 
-    }
+        RevealTiles();
 
+
+    }
+    private void OnEnable()
+    {
+        RevealTiles();
+    }
     private void DistributeTilesOnPositions(List<HexgridPosition> hexgridPositions)
     {
         IListExtensions.Shuffle(hexgridPositions);
@@ -54,6 +60,8 @@ public class CustomGridScript : MonoBehaviour
     {
         Vector3 worldPos = PositionHelper.HexToWorld(hexgridPosition);
         GameObject tileObject = Instantiate(Tile.gameObject, worldPos, Quaternion.identity);
+        tileObject.transform.SetParent(this.transform,false);
+        tileObject.transform.localPosition = worldPos;
         Hextile hextile = tileObject.GetComponent<Hextile>();
         hextile.HexPosition = hexgridPosition;
         _tiles.Add(hexgridPosition, tileObject);
@@ -165,6 +173,44 @@ public class CustomGridScript : MonoBehaviour
 
             }
         }
+    }
+
+    public void RevealTiles(float duration)
+    {
+        foreach (var tile in _tiles)
+        {
+            Animator animator = tile.Value.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.Play("TileInvisible");
+            }
+
+        }
+        StartCoroutine(RevealTilesCoroutine(duration));
+    }
+
+    public void RevealTiles()
+    {
+        RevealTiles(2f);
+    }
+    IEnumerator RevealTilesCoroutine(float duration)
+    {
+        float durationTest = _tiles.Count;
+        foreach(var tile in _tiles)
+        {
+            Animator animator = tile.Value.GetComponent<Animator>();
+            if(animator != null)
+            {
+                animator.Play("TilePopUp");
+                yield return new WaitForSeconds(duration/durationTest);
+                
+
+            }
+
+        }
+
+
+
     }
 }
 
