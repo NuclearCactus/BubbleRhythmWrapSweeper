@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
 
     private int _unflagAmount;
 
+
+    [SerializeField] private GameObject _gameOverScreen;
+
     // update pls
     void Start()
     {
@@ -151,7 +154,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator StartDeath()
     {
-        
+        ComboTracker.enabled = false;
  
         for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
         {
@@ -160,14 +163,19 @@ public class GameManager : MonoBehaviour
             ScoreSetter.GameOver();
 
         }
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(1);
+        _gameOverScreen.SetActive(true);
+        
     }
 
     internal void tileClick()
     {
         ScoreSetter.AddActionscore();
         
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
     }
 
     internal void CheckIfEnd()

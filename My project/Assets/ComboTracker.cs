@@ -7,7 +7,7 @@ using UnityEngine;
 public class ComboTracker : MonoBehaviour
 {
     int _score = 0;
-    [SerializeField] private TextMeshPro _scoreTracker;
+    [SerializeField] private TextMeshPro[] _scoreTrackers;
     [SerializeField] private TextMeshPro _streak;
 
     [SerializeField] private Animator[] _animator;
@@ -70,6 +70,9 @@ public class ComboTracker : MonoBehaviour
 
     private void UpdateScore()
     {
-        _scoreTracker.text = $"{_score}";
+        foreach (var tracker in _scoreTrackers)
+        {
+            tracker.text = $"{_score}";
+        }
     }
 }
