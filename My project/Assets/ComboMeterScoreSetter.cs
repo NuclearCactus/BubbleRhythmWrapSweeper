@@ -112,6 +112,7 @@ public class ComboMeterScoreSetter : MonoBehaviour
             if (points > 10)
                 textPopupMood = TextPopupMood.VeryPositive;
 
+            GameManager.Instance.ComboTracker.GotPositiveScore((int)points);
         }
         else
         {
@@ -143,6 +144,8 @@ public class ComboMeterScoreSetter : MonoBehaviour
     {
         AnimationLowerScore();
         LowerScoreAnticipation();
+        GameManager.Instance.ComboTracker.GotNegative();
+
     }
 
     public void ScoreFine(int fine)
@@ -167,7 +170,8 @@ public class ComboMeterScoreSetter : MonoBehaviour
         //
         TextPopupMood textPopupMood = TextPopupMood.VeryPositive;
 
-        
+
+        GameManager.Instance.ComboTracker.GotPositiveScore(30);
 
         text.GetComponent<TextPopUp>().SetPopup($"Finished +{30}", textPopupMood);
     }
@@ -176,6 +180,7 @@ public class ComboMeterScoreSetter : MonoBehaviour
     {
         Miniscore -= 15;
         SortMiniScore();
+        GameManager.Instance.ComboTracker.GotNegative();
 
 
         Vector3 position = _spawnradius.gameObject.transform.position + UnityEngine.Random.Range(-0.5f, 0.5f) * _spawnradius.transform.localScale.x * new Vector3(1, 0)
@@ -207,6 +212,7 @@ public class ComboMeterScoreSetter : MonoBehaviour
         //    1f / text.transform.parent.localScale.y, 1f / text.transform.parent.localScale.z);
         //
         TextPopupMood textPopupMood = TextPopupMood.Negative;
+        GameManager.Instance.ComboTracker.GotNegative();
 
 
 

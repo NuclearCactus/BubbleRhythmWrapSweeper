@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField, Header("Juice")] private Animator _restartButton;
     public MetroGnome metronome;
     public ComboMeterScoreSetter ScoreSetter;
-
+    public ComboTracker ComboTracker;
 
     private int _unflagAmount;
 
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
     {
         ScoreSetter.AddActionscore();
         _unflagAmount++;
-        ScoreSetter.ScoreFine(_unflagAmount);
+        ScoreSetter.ScoreFine(_unflagAmount*2);
         CustomGridScript.Unflag();
         PlayUnflagSound();
     }

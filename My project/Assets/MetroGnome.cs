@@ -20,10 +20,18 @@ public class MetroGnome : MonoBehaviour
 
 
 
-    void Start()
+    void Awake()
     {
         bpmInSeconds = 60 / BPM;
         nextTime = (float)AudioSettings.dspTime + bpmInSeconds + offset + _music.time;
+
+#if UNITY_EDITOR
+        return;
+#else
+        nextTime+=bpmInSeconds/2;
+        return;
+#endif
+
     }
 
     void Update()
