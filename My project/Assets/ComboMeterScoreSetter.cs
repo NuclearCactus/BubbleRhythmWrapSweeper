@@ -113,10 +113,13 @@ public class ComboMeterScoreSetter : MonoBehaviour
                 textPopupMood = TextPopupMood.VeryPositive;
 
         }
-        if(points < 0)
+        else
         {
-            textPopupMood = TextPopupMood.Negative;
+            if (points < 0)
+            {
+                textPopupMood = TextPopupMood.Negative;
 
+            }
         }
 
         text.GetComponent<TextPopUp>().SetPopup($"{points}", textPopupMood);
@@ -166,7 +169,7 @@ public class ComboMeterScoreSetter : MonoBehaviour
 
         
 
-        text.GetComponent<TextPopUp>().SetPopup($"Finished, +{30}", textPopupMood);
+        text.GetComponent<TextPopUp>().SetPopup($"Finished +{30}", textPopupMood);
     }
 
     internal void ManuelResetFine()
@@ -188,6 +191,26 @@ public class ComboMeterScoreSetter : MonoBehaviour
 
 
         text.GetComponent<TextPopUp>().SetPopup($"Reset fine! -{15}", textPopupMood);
+    }
+
+    internal void GameOver()
+    {
+       
+
+
+        Vector3 position = _spawnradius.gameObject.transform.position + UnityEngine.Random.Range(-0.5f, 0.5f) * _spawnradius.transform.localScale.x * new Vector3(1, 0)
+            + UnityEngine.Random.Range(-0.5f, 0.5f) * _spawnradius.transform.localScale.y * new Vector3(0, 1);
+
+        GameObject text = GameObject.Instantiate(_textPopUp.gameObject, position, Quaternion.identity);
+        //text.transform.SetParent(_spawnradius.transform,true);
+        //text.transform.localScale = new Vector3(1f/text.transform.parent.localScale.x,
+        //    1f / text.transform.parent.localScale.y, 1f / text.transform.parent.localScale.z);
+        //
+        TextPopupMood textPopupMood = TextPopupMood.Negative;
+
+
+
+        text.GetComponent<TextPopUp>().SetPopup($"Game Over!", textPopupMood);
     }
 }
 

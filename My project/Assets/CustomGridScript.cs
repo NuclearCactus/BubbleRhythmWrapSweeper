@@ -204,7 +204,7 @@ public class CustomGridScript : MonoBehaviour
                 if (!hextile.HasBeenClicked)
                 {
                     hextile.HasBeenClicked = true;
-                    hextile.ClickLogic();
+                    hextile.ClickFromEnvironment();
                 }
 
             }

@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _bubbleExplosion;
     [SerializeField] private AudioSource _mouseClick;
     [SerializeField] private AudioSource _bubbleBlow;
+    [SerializeField] private AudioSource _bubbleFail;
+    [SerializeField] private AudioSource _flagSound;
 
-    
+
+
 
 
     private float _shakeDuration = 0f;
@@ -24,7 +27,6 @@ public class GameManager : MonoBehaviour
     [SerializeField, Header("Life Settings")] private int _maxLives = 3;
     private int _lives = 3;
     [SerializeField] private Volume _postprocessing;
-    private int _unflagMistakes;
 
 
 
@@ -155,11 +157,11 @@ public class GameManager : MonoBehaviour
         {
             Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 4, 1 - alpha);
             yield return new WaitForSeconds(0.02f);
-
+            ScoreSetter.GameOver();
 
         }
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(0);
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(1);
     }
 
     internal void tileClick()
@@ -187,17 +189,16 @@ public class GameManager : MonoBehaviour
     internal void tileFlag()
     {
         ScoreSetter.AddActionscore();
-
+        PlayFlagSound();
     }
 
     internal void tileUnflag()
     {
-        _unflagMistakes++;
         ScoreSetter.AddActionscore();
         _unflagAmount++;
         ScoreSetter.ScoreFine(_unflagAmount);
         CustomGridScript.Unflag();
-
+        PlayUnflagSound();
     }
 
     public void ManualReset()
@@ -205,5 +206,36 @@ public class GameManager : MonoBehaviour
         ScoreSetter.ManuelResetFine();
         CustomGridScript.Reset();
     }
-  
+
+    internal void PlayFailSound()
+    {
+        _bubbleFail.pitch = UnityEngine.Random.Range(0.4f, 1.2f);
+        _bubbleFail.volume = UnityEngine.Random.Range(0.4f, 0.6f);
+
+        _bubbleFail.Play();
+    }
+
+    internal void PlayBubblePopSound(float v)
+    {
+        _bubblePop.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+        _bubblePop.volume = UnityEngine.Random.Range(0.8f, 1.2f)*v;
+
+        _bubblePop.Play();
+    }
+
+    internal void PlayFlagSound()
+    {
+        _flagSound.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+        _flagSound.volume = UnityEngine.Random.Range(0.8f, 1.2f);
+
+        _flagSound.Play();
+    }
+
+    internal void PlayUnflagSound()
+    {
+        _flagSound.pitch = UnityEngine.Random.Range(0.2f, 0.4f);
+        _flagSound.volume = UnityEngine.Random.Range(0.4f, 0.9f);
+
+        _flagSound.Play();
+    }
 }

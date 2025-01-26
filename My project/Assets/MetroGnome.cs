@@ -16,12 +16,14 @@ public class MetroGnome : MonoBehaviour
     public event EventHandler<EventArgs> Beat;
 
     [SerializeField] private AudioSource _metronomeTick;
+    [SerializeField] private AudioSource _music;
+
 
 
     void Start()
     {
         bpmInSeconds = 60 / BPM;
-        nextTime = (float)AudioSettings.dspTime + bpmInSeconds + offset;
+        nextTime = (float)AudioSettings.dspTime + bpmInSeconds + offset + _music.time;
     }
 
     void Update()

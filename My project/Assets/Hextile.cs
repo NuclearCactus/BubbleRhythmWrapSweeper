@@ -38,6 +38,18 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
                 return;
 
 
+            float TimingPoints = GameManager.Instance.ScoreSetter.GetPointsForTiming();
+            if (TimingPoints > 10)
+            {
+                Animator.Play("TilePerfect");
+            }
+            else if (TimingPoints < 0) 
+            {
+                Animator.Play("TileBad");
+
+            }
+
+            PlaySound();
             
             ClickLogic();
                     GameManager.Instance.tileClick();
@@ -71,6 +83,20 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    protected virtual void PlaySound()
+    {
+        if (GameManager.Instance.ScoreSetter.GetPointsForTiming() > 0)
+        {
+            GameManager.Instance.PlayBubblePopSound();
+
+        }
+        else
+        {
+            GameManager.Instance.PlayFailSound();
+
+        }
+    }
+
     public virtual void ClickLogic()
     {
         //Debug.Log($"{name} on position {HexPosition.GetCube()} got clicked!");
@@ -79,9 +105,15 @@ public class Hextile : MonoBehaviour, IPointerClickHandler
         GameManager.Instance.CheckIfEnd();
 
         ClickEvent?.Invoke();
-        GameManager.Instance.PlayBubblePopSound();
+        
     }
 
+    public void ClickFromEnvironment()
+    {
+        GameManager.Instance.PlayBubblePopSound(0.35f);
+
+        ClickLogic();
+    }
 
     public virtual void Highlight(float duration)
     {

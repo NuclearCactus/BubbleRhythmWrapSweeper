@@ -21,12 +21,17 @@ public class HexMine : Hextile
         HasBeenPopped = true;
         ClickEvent?.Invoke();
         Debug.Log($"BOOOOOOOOOOOOOOMMMMMMMM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        GameManager.Instance.PlayExplosionSound();
         GameManager.Instance.TriggerShake(1, 5f);
         GameManager.Instance.RemoveLife();
         SpriteRenderer.color = Color.red;
 
     }
-    
+
+    protected override void PlaySound()
+    {
+        GameManager.Instance.PlayExplosionSound();
+
+    }
+
 }
 
